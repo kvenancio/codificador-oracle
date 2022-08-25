@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Desafio 1 - ORACLE</title>
+        <style>
+    *{
+                box-sizing: border-box;
+            }
+            
+            body {
+                margin: 0;
+            }
+
+            .cabecalho {
+                background-color: #f1f1f1
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+            }
+            
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            .toopnav a: hover{
+                background-color: #ddd;
+                color: black;
+            }
+            .entrada{
+                align-items: center;
+    display: inline-grid;
+    /* text-align: center; */
+    width: 25%;
+    margin: 0px 10px;
+    background-color: #fff;
+    /* padding: 15px; */
+    border-radius: 32px;
+    box-sizing: border-box;
+    overflow: hidden;  
+    }
+    .saida {
+    align-items: center;
+    display: inline-grid;
+    /* text-align: center; */
+    width: 25%;
+    margin: 0px 10px;
+    background-color: #fff;
+    /* padding: 15px; */
+    border-radius: 32px;
+    box-sizing: border-box;
+    overflow: hidden;  
+} 
+.copy {
+    width: 70%;
+    margin: auto;
+} 
+.codificador {
+    width: 25%;
+    margin: auto;
+} 
+.decodificador{
+    width: 25%;
+    margin: auto;
+} 
+            </style>
+	</head>
+	<body>
+		<header>
+            <div class="cabecalho">
+                <img src="logo-alura-oracle.jpg" style="text-align: center; vertical-align: middle;" alt="logo oracle + alura">
+                <h1 style="text-align: center; font-family: Roboto Mono, Menlo, Monaco, Courier, monospace;">Decodificador de mensagens</h1></div>
+            <div class="topnav">
+                <a href="https://www.linkedin.com/in/kessyvenancio/">Linkedin</a>
+            <a href="https://github.com/kvenancio">Github</a>
+        </header>
+        <br>
+		<main>
+            <div class="caixasdetexto">
+			<textarea id="mensagem" class="entrada" placeholder="Escreva o seu texto aqui" required autofocus></textarea>	
+                </div>
+                <section class="text-box">
+                <div class="caixasdetexto">
+					<textarea id="mensagemCripto" class="saida" placeholder="Seu texto criptografado/descriptografado" readonly></textarea>
+                </div>
+				</section>
+                <p style="color: red; font-family: 'Open Sans'; text-align: center;">Não utilize acento ou letra maiúscula</p>
+			<button id="copy" style="text-align: center; font-family: Roboto Mono, Menlo, Monaco, Courier, monospace;" onclick="copy()">Copiar</button>
+			<section class="button-box">
+				<button class="codificador" style="text-align: center; font-family: Roboto Mono, Menlo, Monaco, Courier, monospace;" onclick="criptografar()">Criptografar</button>
+				<button class="decodificador" style="text-align: center; font-family: Roboto Mono, Menlo, Monaco, Courier, monospace;" onclick="verificadora()">Descriptografar</button>
+			</section>
+		<script>
+						/*"e" = "enter"
+						"i" = "imes"
+						"a" = "ai"
+						"o" = "ober"
+						"u" = "ufat"*/
+			var entrada = document.querySelector("#mensagem");
+			var saida = document.querySelector("#mensagemCripto");	
+			function criptografar(){
+				var text = entrada.value;
+				var criptoText = text.replace(/[E\e\é\ê]/gi, "enter").replace(/[I\i\í]/gi, "imes").replace(/[A\a\á\â]/gi, "ai").replace(/[O\o\ó\ô]/gi, "ober").replace(/U\u\ú/gi, "ufat");
+				console.log(criptoText);
+				saida.innerText = criptoText;
+				entrada.value = "";				
+			}
+			function descriptografar(){
+				var criptoText = entrada.value
+				var descriptoText = criptoText.replace(/enter/gi, "e").replace(/imes/gi, "i").replace(/ai/gi, "a").replace(/ober/gi, "o").replace(/ufat/gi, "u");
+				console.log(descriptoText);
+				saida.innerText = descriptoText;
+				entrada.value = "";				
+			}
+			function verificadora() {
+				var criptoText = entrada.value
+				var segredos = ["enter", "imes", "ai", "ober", "ufat"];
+				var verificar = segredos.some(elementoArray => criptoText.includes(elementoArray)); 
+				if (verificar) {
+					descriptografar();
+				} else {
+					alert('A mensagem não está criptografada');
+				}
+			}
+			function copy() {
+				let copyText = document.querySelector("#mensagemCripto");
+				copyText.select();
+				document.execCommand("copy");
+			}
+			document.querySelector("#copy").addEventListener("click", copy);
+		</script>
+		</main>
+		<footer>
+            <p><b>© Código desenvolvido por Kessy Venâncio</b></p>
+        </footer>
+	</body>
+</html>
