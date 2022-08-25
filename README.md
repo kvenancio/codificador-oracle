@@ -22,4 +22,5 @@ Pretendo realizar melhorias em relação ao CSS e responsividade.
 - Deve ser possível converter uma palavra para a versão criptografada e também retornar uma palavra criptografada para a versão original.
 
 [**Visualização do Codificador**](https://kvenancio.github.io/codificador-oracle/)
+
 [**LinkedIn**](https://www.linkedin.com/in/kessyvenancio/)
